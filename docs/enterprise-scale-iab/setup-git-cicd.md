@@ -4,7 +4,7 @@ One of the **design goals of** the Enterprise-Scale reference implementation is 
 
 In this exercise you will learn how to fully use the Enterprise-Scale GitHub repository to create a DevOps pipeline using GitHub Actions for deploying resources to Azure, and reconcile changes made through tools outside the DevOps pipeline.
 
-> Note: Enterprise-Scale AzOps is also supported on Azure DevOps, the instructions to setup AzOps using Azure DevOps are [here](../deploy/setup-azuredevops.md).
+> Note: Enterprise-Scale AzOps is also supported on Azure DevOps, the instructions to setup AzOps using Azure DevOps are [here](../Deploy/setup-azuredevops.md).
 
 To better understand this process, in this section you will leverage the **ES-management** Management Group that was created in the previous step [Deploy the Management Group structure and policy/PolicySet definitions](./deploy-tenant.md#deploy-the-management-group-structure-and-policypolicyset-definitions) and an Azure subscription which has been moved under it. We will now be a GitHub repository in your organization to discover the tenant, and save a RESTfull representation of the Azure environment in a GitHub repository, make changes to it and then get them deployed to your Azure environment.
 
@@ -90,14 +90,14 @@ The Discovery/Initialization process will run entirely on GitHub. This guide use
    Paste the information that you got in the clipboard (the outcome from the last PowerShell step you executed). The outcome should look like this:
 
    ```PowerShell
-   [ordered]@{
-   "clientId":       $servicePrincipal.ApplicationId,
-   "displayName":    $servicePrincipal.DisplayName,
-   "name":           $servicePrincipal.ServicePrincipalNames[1],
-   "clientSecret":   [System.Net.NetworkCredential]::new("", $servicePrincipal.Secret).Password,
-   "tenantId":       (Get-AzContext).Tenant.Id,
-   "subscriptionId": (Get-AzContext).Subscription.Id
-   } | ConvertTo-Json
+   {
+   "clientId": "xxxx-xxxx-xxxx-xxxx-xxxxx",
+   "displayName": "es-xxxx",
+   "name": "http://es-xxxx",
+   "clientSecret": "xxxxxx-xxxx-xxxx-xxxx-xxxxxx",
+   "tenantId": "xxxxxx-xxxx-xxxx-xxxx-xxxxxx",
+   "subscriptionId": "xxxxxx-xxxx-xxxx-xxxx-xxxxxx"
+   }
    ```
 
 8. Once the secrets is created, you should see the following entries in the **Secrets** window.
